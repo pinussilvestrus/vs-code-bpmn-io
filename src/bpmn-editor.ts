@@ -543,6 +543,11 @@ export class BpmnEditor implements vscode.CustomEditorProvider<BpmnDocument> {
       return (
         this._callbacks.get(message.requestId)
       )?.(message.body);
+
+    case 'canvas-focus-change':
+      vscode.commands.executeCommand('setContext', 'bpmn-io.bpmnEditor.canvasFocused', message.value);
+      return;
+
     }
   }
 }

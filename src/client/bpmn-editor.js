@@ -44,6 +44,14 @@ modeler.on('commandStack.changed', () => {
   });
 });
 
+modeler.on('canvas.focus.changed', (event) => {
+  return vscode.postMessage({
+    type: 'canvas-focus-change',
+    value: event.focused
+  });
+});
+
+
 // handle messages from the extension
 window.addEventListener('message', async (event) => {
 
