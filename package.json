@@ -69,6 +69,12 @@
         "key": "ctrl+-",
         "mac": "cmd+-",
         "when": "activeCustomEditorId == 'bpmn-io.bpmnEditor' && focusedView == ''"
+      },
+      {
+        "command": "",
+        "key": "ctrl+z",
+        "mac": "cmd+z",
+        "when": "activeCustomEditorId == 'bpmn-io.bpmnEditor' && focusedView == ''"
       }
     ],
     "customEditors": [
