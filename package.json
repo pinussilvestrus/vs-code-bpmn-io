@@ -33,6 +33,50 @@
         "category": "BPMN"
       }
     ],
+    "keybindings": [
+      {
+        "command": "",
+        "key": "ctrl+a",
+        "mac": "cmd+a",
+        "when": "bpmn-io.bpmnEditor.canvasFocused"
+      },
+      {
+        "command": "",
+        "key": "ctrl+0",
+        "mac": "cmd+0",
+        "when": "bpmn-io.bpmnEditor.canvasFocused"
+      },
+      {
+        "command": "",
+        "key": "ctrl+numpad_add",
+        "mac": "cmd+numpad_add",
+        "when": "bpmn-io.bpmnEditor.canvasFocused"
+      },
+      {
+        "command": "",
+        "key": "ctrl+numpad_subtract",
+        "mac": "cmd+numpad_subtract",
+        "when": "bpmn-io.bpmnEditor.canvasFocused"
+      },
+      {
+        "command": "",
+        "key": "ctrl+=",
+        "mac": "cmd+=",
+        "when": "bpmn-io.bpmnEditor.canvasFocused"
+      },
+      {
+        "command": "",
+        "key": "ctrl+-",
+        "mac": "cmd+-",
+        "when": "bpmn-io.bpmnEditor.canvasFocused"
+      },
+      {
+        "command": "",
+        "key": "ctrl+z",
+        "mac": "cmd+z",
+        "when": "bpmn-io.bpmnEditor.canvasFocused"
+      }
+    ],
     "customEditors": [
       {
         "viewType": "bpmn-io.bpmnEditor",
@@ -49,6 +93,7 @@
     "all": "run-s lint test",
     "lint": "eslint .",
     "vscode:prepublish": "npm run compile",
+    "package": "npx @vscode/vsce pack",
     "compile": "run-s compile:clean compile:app compile:tests",
     "compile:app": "rollup -c rollup.config.mjs",
     "compile:tests": "tsc -p ./src/test",
@@ -90,7 +135,7 @@
   },
   "dependencies": {
     "@vscode/codicons": "^0.0.35",
-    "bpmn-js": "^17.0.1",
-    "bpmn-js-color-picker": "^0.7.0"
+    "bpmn-js": "^18.1.2",
+    "bpmn-js-color-picker": "^0.7.1"
   }
 }

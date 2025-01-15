@@ -10,20 +10,18 @@ import BpmnModeler from 'bpmn-js/lib/Modeler';
 
 import BpmnColorPickerModule from 'bpmn-js-color-picker';
 
-import KeyboardModule from './features/keyboard';
+import { handleMacOsKeyboard } from './utils/macos-keyboard';
 
 /**
  * @type { import('vscode') }
  */
 const vscode = acquireVsCodeApi();
 
+handleMacOsKeyboard();
+
 const modeler = new BpmnModeler({
   container: '#canvas',
-  keyboard: {
-    bindTo: document
-  },
   additionalModules: [
-    KeyboardModule,
     BpmnColorPickerModule
   ]
 });
@@ -49,6 +47,14 @@ modeler.on('commandStack.changed', () => {
     idx: commandStack._stackIdx
   });
 });
+
+modeler.on('canvas.focus.changed', (event) => {
+  return vscode.postMessage({
+    type: 'canvas-focus-change',
+    value: event.focused
+  });
+});
+
 
 // handle messages from the extension
 window.addEventListener('message', async (event) => {
@@ -83,9 +89,6 @@ window.addEventListener('message', async (event) => {
     break;
   }
 
-  case 'triggerAction':
-    return modeler.get('editorActions').trigger(body.action, body.options);
-
   case 'getText':
     return modeler.saveXML({ format: true }).then(({ xml }) => {
       return vscode.postMessage({
@@ -95,6 +98,9 @@ window.addEventListener('message', async (event) => {
       });
     });
 
+  case 'focusCanvas':
+    modeler.get('canvas').focus();
+    return;
   }
 });
 
